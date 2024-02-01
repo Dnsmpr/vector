@@ -15,6 +15,9 @@ vector* vec_init(uint64_t capacity, size_t bytes) {
     vec_handler->vec.capacity = capacity;
     vec_handler->append = append;
     vec_handler->print = print;
+    vec_handler->pop = pop;
+    vec_handler->is_empty = is_empty;
+    vec_handler->get_size = get_size;
     return vec_handler;
 }
 

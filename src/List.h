@@ -8,7 +8,10 @@
 
 typedef struct vector vector;
 typedef void (*v_func)(vector*);
+typedef void* (*vp_func)(vector*);
 typedef void (*func)(void*, vector*);
+typedef size_t (*s_func)(vector*);
+typedef bool (*b_func)(vector*);
 
 
 typedef struct vector_impl {
@@ -22,6 +25,11 @@ typedef struct vector {
     vector_impl vec;
     func append;
     v_func print;
+    s_func get_size;
+    b_func is_empty;
+    vp_func pop;
+
+
 } vector;
 
 vector* vec_init(uint64_t size, size_t bytes);

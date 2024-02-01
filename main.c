@@ -23,11 +23,11 @@ int main(int argc, char* argv[]) {
     v->append(p5, v);
     v->print(v);
     vector* v2 = vec_init(cap, s);
-    printf("%ld\n", get_size(v));
-    printf("%d\n", is_empty(v));
+    printf("%ld\n", v->get_size(v));
+    printf("%d\n", v->is_empty(v));
     printf("%d\n", is_empty(v2));
     int* val = pop(v);
     printf("%d\n", *val);
-    printf("%ld\n", get_size(v));
+    printf("%ld\n", v->get_size(v));
     return 0;
 }
