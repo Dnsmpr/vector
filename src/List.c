@@ -32,6 +32,24 @@ void append(void* item, vector* vec) {
     vec->vec.item_list[vec->vec.size++] = new_item;
 }
 
+void* pop(vector* vec) {
+    if (vec->vec.size == 0) {
+        return NULL;
+    }
+    vec->vec.size--;
+    void* item = vec->vec.item_list[vec->vec.size];
+    void* copy = malloc(vec->vec.bytes);
+
+    if (copy == NULL) {
+        return NULL;
+    }
+
+    memmove(copy, item, vec->vec.bytes);
+    free(item);
+
+    return copy;
+}
+
 size_t get_size(vector* vec) {
     return vec->vec.size;
 }

@@ -29,6 +29,7 @@ void append(void* item,  vector* vec);
 void print(vector* vec);
 size_t get_size(vector* vec);
 bool is_empty(vector* vec);
+void* pop(vector* vec);
 
 
 

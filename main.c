@@ -26,6 +26,8 @@ int main(int argc, char* argv[]) {
     printf("%ld\n", get_size(v));
     printf("%d\n", is_empty(v));
     printf("%d\n", is_empty(v2));
-    
+    int* val = pop(v);
+    printf("%d\n", *val);
+    printf("%ld\n", get_size(v));
     return 0;
 }
