@@ -21,18 +21,42 @@ vector* vec_init(uint64_t capacity, size_t bytes) {
     return vec_handler;
 }
 
-void append(void* item, vector* vec) {
-    if (vec->vec.size == vec->vec.capacity) {
-        vec->vec.item_list = realloc(vec->vec.item_list, 2 * (vec->vec.capacity) * sizeof(void*));
-        if (vec->vec.item_list == NULL) {
-            return;
-        }
-        vec->vec.capacity *= 2;
-
+void resize(vector* vec) {
+    vec->vec.item_list = realloc(vec->vec.item_list, 2 * (vec->vec.capacity) * sizeof(void*));
+    if (vec->vec.item_list == NULL) {
+        return;
     }
+    vec->vec.capacity *= 2;
+}
+
+void check_for_resize(vector* vec) {
+    if (vec->vec.size == vec->vec.capacity) {
+    resize(vec);
+    }
+}
+
+void append(void* item, vector* vec) {
+    check_for_resize(vec);
     void* new_item = malloc(vec->vec.bytes);
     memmove(new_item, item, vec->vec.bytes);
     vec->vec.item_list[vec->vec.size++] = new_item;
+}
+
+void front(void* item, vector* vec) {
+    check_for_resize(vec);
+    for (int i = vec->vec.size - 1; i >= 0; i--) {
+        vec->vec.item_list[i + 1] = vec->vec.item_list[i];
+        vec->vec.item_list[i] = NULL;
+    }
+
+    void* new_item = malloc(vec->vec.bytes);
+    if (new_item == NULL) {
+        return;
+    }
+
+    memmove(new_item, item, vec->vec.bytes);
+    vec->vec.item_list[0] = new_item;
+    vec->vec.size++;
 }
 
 void* pop(vector* vec) {
@@ -63,7 +87,7 @@ bool is_empty(vector* vec) {
 
 void print(vector* vec) {
     for (int i = 0; i < vec->vec.size; i++) {
-        printf("%p\n", vec->vec.item_list[i]);
+        printf("%s\n", vec->vec.item_list[i]);
     }
 }
 

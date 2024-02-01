@@ -2,32 +2,36 @@
 #include <stdint.h>
 #include "List.h"
 
+typedef struct test {
+    int size;
+    int height;
+} test;
+
 int main(int argc, char* argv[]) {
     uint64_t cap = 4;
     size_t s = sizeof(int);
     vector* v = vec_init(cap, s);
-    int val1 = 1;
-    int val2 = 2;
-    int val3 = 3;
-    int val4 = 4;
-    int val5 = 5;
-    void* p1 = &val1;
-    void* p2 = &val2;
-    void* p3 = &val3;
-    void* p4 = &val4;
-    void* p5 = &val5;
-    v->append(p1, v);
-    v->append(p2, v);
-    v->append(p3, v);
-    v->append(p4, v);
-    v->append(p5, v);
+    char* v1 = "aa";
+    char* v2 = "bb";
+    char* v3 = "cc";
+    char* v4 = "dd";
+    char* v5 = "ee";
+    char* v6 = "ff";
+    char* v7 = "gg";
+    v->append(v1, v);
+    v->append(v2, v);
+    v->append(v3, v);
+    v->append(v4, v);
+    v->append(v5, v);
+    v->append(v6, v);
+    v->append(v7, v);
+    char* v8 = "zz\0";
+    front(v8, v);
     v->print(v);
-    vector* v2 = vec_init(cap, s);
     printf("%ld\n", v->get_size(v));
     printf("%d\n", v->is_empty(v));
-    printf("%d\n", is_empty(v2));
-    int* val = pop(v);
-    printf("%d\n", *val);
+    char* val = v->pop(v);
+    printf("%s\n", val);
     printf("%ld\n", v->get_size(v));
     return 0;
 }
