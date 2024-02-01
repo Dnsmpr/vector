@@ -32,6 +32,10 @@ void append(void* item, vector* vec) {
     vec->vec.item_list[vec->vec.size++] = new_item;
 }
 
+size_t get_size(vector* vec) {
+    return vec->vec.size;
+}
+
 void print(vector* vec) {
     for (int i = 0; i < vec->vec.size; i++) {
         printf("%p\n", vec->vec.item_list[i]);

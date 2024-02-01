@@ -27,6 +27,7 @@ typedef struct vector {
 vector* vec_init(uint64_t size, size_t bytes);
 void append(void* item,  vector* vec);
 void print(vector* vec);
+size_t get_size(vector* vec);
 
 
 

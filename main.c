@@ -22,6 +22,7 @@ int main(int argc, char* argv[]) {
     v->append(p4, v);
     v->append(p5, v);
     v->print(v);
+    printf("%ld", get_size(v));
     
     return 0;
 }
