@@ -18,6 +18,8 @@ vector* vec_init(uint64_t capacity, size_t bytes) {
     vec_handler->pop = pop;
     vec_handler->is_empty = is_empty;
     vec_handler->get_size = get_size;
+    vec_handler->destroy = destroy;
+    vec_handler->front = front;
     return vec_handler;
 }
 

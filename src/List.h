@@ -24,6 +24,8 @@ typedef struct vector_impl {
 typedef struct vector {
     vector_impl vec;
     func append;
+    func front;
+    v_func destroy;
     v_func print;
     s_func get_size;
     b_func is_empty;

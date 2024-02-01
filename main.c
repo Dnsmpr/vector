@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     v->append(v6, v);
     v->append(v7, v);
     char* v8 = "zz\0";
-    front(v8, v);
+    v->front(v8, v);
     v->print(v);
     printf("%ld\n", v->get_size(v));
     printf("%d\n", v->is_empty(v));
@@ -34,6 +34,6 @@ int main(int argc, char* argv[]) {
     printf("%s\n", val);
     printf("%ld\n", v->get_size(v));
 
-    destroy(v);
+    v->destroy(v);
     return 0;
 }
