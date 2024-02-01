@@ -22,7 +22,10 @@ int main(int argc, char* argv[]) {
     v->append(p4, v);
     v->append(p5, v);
     v->print(v);
-    printf("%ld", get_size(v));
+    vector* v2 = vec_init(cap, s);
+    printf("%ld\n", get_size(v));
+    printf("%d\n", is_empty(v));
+    printf("%d\n", is_empty(v2));
     
     return 0;
 }

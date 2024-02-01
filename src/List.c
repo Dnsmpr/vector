@@ -36,6 +36,10 @@ size_t get_size(vector* vec) {
     return vec->vec.size;
 }
 
+bool is_empty(vector* vec) {
+    return vec->vec.size == 0;
+}
+
 void print(vector* vec) {
     for (int i = 0; i < vec->vec.size; i++) {
         printf("%p\n", vec->vec.item_list[i]);
