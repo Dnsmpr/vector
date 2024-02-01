@@ -33,5 +33,7 @@ int main(int argc, char* argv[]) {
     char* val = v->pop(v);
     printf("%s\n", val);
     printf("%ld\n", v->get_size(v));
+
+    destroy(v);
     return 0;
 }

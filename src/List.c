@@ -59,6 +59,14 @@ void front(void* item, vector* vec) {
     vec->vec.size++;
 }
 
+void destroy(vector* vec) {
+    for (int i = 0; i < vec->vec.size; i++) {
+        free(vec->vec.item_list[i]);
+    }
+    free(vec->vec.item_list);
+    free(vec);
+}
+
 void* pop(vector* vec) {
     if (vec->vec.size == 0) {
         return NULL;

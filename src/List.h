@@ -39,6 +39,7 @@ size_t get_size(vector* vec);
 bool is_empty(vector* vec);
 void* pop(vector* vec);
 void front(void* item, vector* vec);
+void destroy(vector* vec);
 
 
 
