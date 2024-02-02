@@ -130,6 +130,12 @@ void replace(vector* vec, size_t index, void* item);
  * @param vec Pointer to the vector.
  */
 void deletef(vector* vec);
+
+/**
+ * Delete item at the end of the vector.
+ * @param vec Pointer to the vector.
+ */
+void deleteb(vector* vec);
 /*****************************************************************************************************/
 
 #endif // LIST_H

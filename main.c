@@ -23,7 +23,11 @@ int main(int argc, char* argv[]) {
     v->append(v1, v);
     v->append(v2, v);
     v->append(v3, v);
-
+    v->print(v);
+    printf("\n");
+    deleteb(v);
+    v->print(v);
+    printf("\n");
     v->append(v4, v);
     v->append(v5, v);
     v->append(v6, v);
@@ -44,6 +48,8 @@ int main(int argc, char* argv[]) {
     v->front(n1, v);
     replace(v, 1, n10);
     replace(v, 100, n10);
+    deleteb(v);
+    deleteb(v);
     replace(v, 5, n10);
 
     deletef(v);
