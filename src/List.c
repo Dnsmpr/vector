@@ -61,6 +61,25 @@ void front(void* item, vector* vec) {
     vec->vec.size++;
 }
 
+void add_at_index(vector* vec, size_t index, void* item) {
+    check_for_resize(vec);
+    if (index >= vec->vec.size) {
+        append(vec, item);
+    }
+    for (int i = vec->vec.size; i >= index; i--) {
+        vec->vec.item_list[i + 1] = vec->vec.item_list[i];
+        vec->vec.item_list[i] = NULL;
+    }
+
+    void* new_item = malloc(vec->vec.bytes);
+    if (new_item == NULL) {
+        return;
+    }
+    memmove(new_item, item, vec->vec.bytes);
+    vec->vec.item_list[index] = new_item;
+    vec->vec.size++;
+}
+
 void destroy(vector* vec) {
     for (int i = 0; i < vec->vec.size; i++) {
         free(vec->vec.item_list[i]);
@@ -96,8 +115,13 @@ bool is_empty(vector* vec) {
 }
 
 void print(vector* vec) {
+    printf("[");
     for (int i = 0; i < vec->vec.size; i++) {
-        printf("%s\n", vec->vec.item_list[i]);
+        if (vec->vec.item_list[i] == NULL) {
+            printf("%s, ", "NULL");
+        }
+        printf("%s, ", vec->vec.item_list[i]);
     }
+    printf("]");
 }
 

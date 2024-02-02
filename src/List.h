@@ -108,6 +108,14 @@ void* pop(vector* vec);
  * @param vec Pointer to the vector to be destroyed.
  */
 void destroy(vector* vec);
+
+/**
+ * Add item at a specified index.
+ * @param vec Pointer to the vector to be destroyed.
+ * @param index Position to insert item.
+ * @param item Pointer to the item to be added at position index.
+ */
+void add_at_index(vector* vec, size_t index, void* item);
 /*****************************************************************************************************/
 
 #endif // LIST_H

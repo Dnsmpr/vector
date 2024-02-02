@@ -25,8 +25,10 @@ int main(int argc, char* argv[]) {
     v->append(v5, v);
     v->append(v6, v);
     v->append(v7, v);
-    char* v8 = "zz\0";
+    char* v8 = "zz";
     v->front(v8, v);
+    char* v9 = "hh";
+    add_at_index(v, 3, v9);
     v->print(v);
     printf("%ld\n", v->get_size(v));
     printf("%d\n", v->is_empty(v));
