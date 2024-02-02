@@ -116,6 +116,14 @@ void destroy(vector* vec);
  * @param item Pointer to the item to be added at position index.
  */
 void add_at_index(vector* vec, size_t index, void* item);
+
+/**
+ * Replace item at a specified index.
+ * @param vec Pointer to the vector.
+ * @param index Index of item to be replaced.
+ * @param item Pointer to the item to be added at specified index.
+ */
+void replace(vector* vec, size_t index, void* item);
 /*****************************************************************************************************/
 
 #endif // LIST_H

@@ -80,6 +80,20 @@ void add_at_index(vector* vec, size_t index, void* item) {
     vec->vec.size++;
 }
 
+void replace(vector* vec, size_t index, void* item) {
+    if (index >= vec->vec.size) {
+        append(item, vec);
+        return;
+    }
+    void* new_item = malloc(vec->vec.bytes);
+    if (new_item == NULL) {
+        return;
+    }
+    memmove(new_item, item, vec->vec.bytes);
+    free(vec->vec.item_list[index]);
+    vec->vec.item_list[index] = new_item;
+}
+
 void destroy(vector* vec) {
     for (int i = 0; i < vec->vec.size; i++) {
         free(vec->vec.item_list[i]);
