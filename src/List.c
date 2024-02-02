@@ -40,6 +40,9 @@ void check_for_resize(vector* vec) {
 void append(void* item, vector* vec) {
     check_for_resize(vec);
     void* new_item = malloc(vec->vec.bytes);
+    if (new_item == NULL) {
+        return;
+    }
     memmove(new_item, item, vec->vec.bytes);
     vec->vec.item_list[vec->vec.size++] = new_item;
 }
