@@ -24,7 +24,8 @@ vector* vec_init(uint64_t capacity, size_t bytes) {
 }
 
 void resize(vector* vec) {
-    vec->vec.item_list = realloc(vec->vec.item_list, 2 * (vec->vec.capacity) * sizeof(void*));
+    vec->vec.item_list = realloc(vec->vec.item_list,
+     2 * (vec->vec.capacity) * sizeof(void*));
     if (vec->vec.item_list == NULL) {
         return;
     }
@@ -143,6 +144,11 @@ void deleteb(vector* vec) {
     }
     free(vec->vec.item_list[vec->vec.size - 1]);
     vec->vec.size--;
+}
+
+void shrink(vector* vec) {
+    vec->vec.item_list = realloc(vec->vec.item_list,vec->vec.size * sizeof(void*));
+    vec->vec.capacity = vec->vec.size;
 }
 
 size_t get_size(vector* vec) {

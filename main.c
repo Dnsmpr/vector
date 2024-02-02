@@ -63,7 +63,9 @@ int main(int argc, char* argv[]) {
     printf("%d\n", v->is_empty(v));
     char* val = v->pop(v);
     printf("%s\n", val);
-    printf("%ld\n", v->get_size(v));
+    printf("%ld\n", v->vec.capacity);
+    shrink(v);
+    printf("%ld\n", v->vec.capacity);
     free(val);
 
     v->destroy(v);

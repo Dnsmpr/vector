@@ -136,6 +136,12 @@ void deletef(vector* vec);
  * @param vec Pointer to the vector.
  */
 void deleteb(vector* vec);
+
+/**
+ * Shrink the capacity of the vector to fit its size.
+ * @param vec Pointer to the vector.
+ */
+void shrink(vector* vec);
 /*****************************************************************************************************/
 
 #endif // LIST_H
