@@ -124,6 +124,19 @@ void* pop(vector* vec) {
     return copy;
 }
 
+void deletef(vector* vec) {
+    if (!(vec->vec.size > 0)) {
+        return;
+    }
+    free(vec->vec.item_list[0]);
+    
+    for (int i = 1; i < vec->vec.size; i++) {
+        vec->vec.item_list[i - 1] = vec->vec.item_list[i];
+    }
+
+    vec->vec.size--;
+}
+
 size_t get_size(vector* vec) {
     return vec->vec.size;
 }

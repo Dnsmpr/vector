@@ -46,7 +46,12 @@ int main(int argc, char* argv[]) {
     replace(v, 100, n10);
     replace(v, 5, n10);
 
-
+    deletef(v);
+    deletef(v);
+    deletef(v);
+    deletef(v);
+    replace(v, 1, n10);
+    v->append(n10, v);
     v->print(v);
     printf("%ld\n", v->get_size(v));
     printf("%d\n", v->is_empty(v));

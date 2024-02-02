@@ -124,6 +124,12 @@ void add_at_index(vector* vec, size_t index, void* item);
  * @param item Pointer to the item to be added at specified index.
  */
 void replace(vector* vec, size_t index, void* item);
+
+/**
+ * Delete item at the front of the vector.
+ * @param vec Pointer to the vector.
+ */
+void deletef(vector* vec);
 /*****************************************************************************************************/
 
 #endif // LIST_H
