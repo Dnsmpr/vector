@@ -33,7 +33,7 @@ void check_for_resize(vector vec) {
     }
 }
 
-void append(void* item, vector vec) {
+void append(vector vec, void* item) {
     vec = (vector_impl*) vec;
     check_for_resize(vec);
     void* new_item = malloc(vec->bytes);
@@ -44,7 +44,7 @@ void append(void* item, vector vec) {
     vec->item_list[vec->size++] = new_item;
 }
 
-void front(void* item, vector vec) {
+void front(vector vec, void* item) {
     vec = (vector_impl*) vec;
     check_for_resize(vec);
     for (int i = vec->size - 1; i >= 0; i--) {
