@@ -140,6 +140,13 @@ void deleteb(vector vec);
  * @param vec A pointer to the vector.
  */
 void shrink(vector vec);
+
+/**
+ * Returns a deep clone of the vector.
+ *
+ * @param vec A pointer to the vector.
+ */
+vector clone(vector vec);
 /*****************************************************************************************************/
 
 #endif // LIST_H

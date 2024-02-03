@@ -155,6 +155,33 @@ void shrink(vector vec) {
     vec->capacity = vec->size;
 }
 
+vector clone(vector vec) {
+    vector v_copy = malloc(sizeof(vector_impl));
+    if (v_copy == NULL) {
+        return NULL;
+    }
+
+    v_copy->bytes = vec->bytes;
+    v_copy->capacity = vec->capacity;
+    v_copy->size = vec->size;
+
+    void** i_copy = malloc(sizeof(void*) * vec->size);
+
+    if(i_copy == NULL) {
+        free(v_copy);
+    }
+
+    for (int i = 0; i < vec->size; i++) {
+        // TODO free everything if malloc fails.
+        void* item_copy = malloc(vec->bytes);
+        memmove(item_copy, vec->item_list[i], vec->bytes);
+        i_copy[i] = item_copy;
+    }
+    v_copy->item_list = i_copy;
+
+    return v_copy;
+}
+
 size_t get_size(vector vec) {
     vec = (vector_impl*) vec;
     return vec->size;

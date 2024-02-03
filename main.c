@@ -67,8 +67,14 @@ int main(int argc, char* argv[]) {
     printf("%ld\n", v->capacity);
     shrink(v);
     printf("%ld\n", v->capacity);
+    printf("copy -------- \n\n");
+    vector ve2 = clone(v);
+    replace(ve2, 1, v8);
+    print(ve2);
+    printf("\n\nreal -------- \n\n");
+    print(v);
     free(val);
-
+    destroy(ve2);
     destroy(v);
     return 0;
 }
