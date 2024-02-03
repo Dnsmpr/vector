@@ -139,11 +139,18 @@ void shrink(vector vec);
 vector clone(vector vec);
 
 /**
- * Returns the capacity
+ * Returns the capacity.
  *
  * @param vec A pointer to the vector.
  */
 size_t get_capacity(vector vec);
+
+/**
+ * Reverses the elements in a vector.
+ *
+ * @param vec A pointer to the vector.
+ */
+void reverse(vector vec);
 /*****************************************************************************************************/
 
 #endif // LIST_H

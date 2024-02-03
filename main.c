@@ -70,7 +70,10 @@ int main(int argc, char* argv[]) {
     vector ve2 = clone(v);
     replace(ve2, 1, v8);
     print(ve2);
-    printf("\n\nreal -------- \n\n");
+    printf("\n\n-------- real -------- \n\n");
+    print(v);
+    printf("\n\n-------- reverse -------- \n\n");
+    reverse(v);
     print(v);
     free(val);
     destroy(ve2);

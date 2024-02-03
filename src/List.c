@@ -180,6 +180,19 @@ vector clone(vector vec) {
     return v_copy;
 }
 
+void reverse(vector vec) {
+    if (vec->size <= 1) {
+        return;
+    }
+    void* temp;
+
+    for (int i = 0; i < (vec->size) / 2; i++) {
+        temp = vec->item_list[i];
+        vec->item_list[i] = vec->item_list[vec->size - 1 - i];
+        vec->item_list[vec->size - 1 - i] = temp;
+    }
+}
+
 size_t get_size(vector vec) {
     return vec->size;
 }
