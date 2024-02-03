@@ -142,6 +142,7 @@ vector clone(vector vec);
  * Returns the capacity.
  *
  * @param vec A pointer to the vector.
+ * @return The current capacity for the vector.
  */
 size_t get_capacity(vector vec);
 
