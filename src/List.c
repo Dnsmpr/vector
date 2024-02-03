@@ -26,7 +26,6 @@ vector vec_init(uint64_t capacity, size_t bytes) {
 }
 
 void resize(vector vec) {
-    vec = (vector_impl*) vec;
     vec->item_list = realloc(vec->item_list,
      2 * (vec->capacity) * sizeof(void*));
     if (vec->item_list == NULL) {
@@ -36,14 +35,12 @@ void resize(vector vec) {
 }
 
 void check_for_resize(vector vec) {
-    vec = (vector_impl*) vec;
     if (vec->size == vec->capacity) {
     resize(vec);
     }
 }
 
 void append(vector vec, void* item) {
-    vec = (vector_impl*) vec;
     check_for_resize(vec);
     void* new_item = malloc(vec->bytes);
     if (new_item == NULL) {
@@ -54,7 +51,6 @@ void append(vector vec, void* item) {
 }
 
 void front(vector vec, void* item) {
-    vec = (vector_impl*) vec;
     check_for_resize(vec);
     for (int i = vec->size - 1; i >= 0; i--) {
         vec->item_list[i + 1] = vec->item_list[i];
@@ -72,7 +68,6 @@ void front(vector vec, void* item) {
 }
 
 void add_at_index(vector vec, size_t index, void* item) {
-    vec = (vector_impl*) vec;
     if (index >= vec->size) {
         append(item, vec);
         return;
@@ -93,7 +88,6 @@ void add_at_index(vector vec, size_t index, void* item) {
 }
 
 void replace(vector vec, size_t index, void* item) {
-    vec = (vector_impl*) vec;
     if (index >= vec->size) {
         append(item, vec);
         return;
@@ -108,7 +102,6 @@ void replace(vector vec, size_t index, void* item) {
 }
 
 void destroy(vector vec) {
-    vec = (vector_impl*) vec;
     for (int i = 0; i < vec->size; i++) {
         free(vec->item_list[i]);
     }
@@ -117,7 +110,6 @@ void destroy(vector vec) {
 }
 
 void* pop(vector vec) {
-    vec = (vector_impl*) vec;
     if (vec->size == 0) {
         return NULL;
     }
@@ -136,7 +128,6 @@ void* pop(vector vec) {
 }
 
 void deletef(vector vec) {
-    vec = (vector_impl*) vec;
     if (!(vec->size > 0)) {
         return;
     }
@@ -150,7 +141,6 @@ void deletef(vector vec) {
 }
 
 void deleteb(vector vec) {
-    vec = (vector_impl*) vec;
     if(!(vec->size > 0)) {
         return;
     }
@@ -159,7 +149,6 @@ void deleteb(vector vec) {
 }
 
 void shrink(vector vec) {
-    vec = (vector_impl*) vec;
     vec->item_list = realloc(vec->item_list,vec->size * sizeof(void*));
     vec->capacity = vec->size;
 }
@@ -192,7 +181,6 @@ vector clone(vector vec) {
 }
 
 size_t get_size(vector vec) {
-    vec = (vector_impl*) vec;
     return vec->size;
 }
 
@@ -201,12 +189,10 @@ size_t get_capacity(vector vec) {
 }
 
 bool is_empty(vector vec) {
-    vec = (vector_impl*) vec;
     return vec->size == 0;
 }
 
 void print(vector vec) {
-    vec = (vector_impl*) vec;
     printf("[");
     for (int i = 0; i < vec->size; i++) {
         if (vec->item_list[i] == NULL) {
