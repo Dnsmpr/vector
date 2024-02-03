@@ -137,6 +137,13 @@ void shrink(vector vec);
  * @param vec A pointer to the vector.
  */
 vector clone(vector vec);
+
+/**
+ * Returns the capacity
+ *
+ * @param vec A pointer to the vector.
+ */
+size_t get_capacity(vector vec);
 /*****************************************************************************************************/
 
 #endif // LIST_H

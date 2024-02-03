@@ -196,6 +196,10 @@ size_t get_size(vector vec) {
     return vec->size;
 }
 
+size_t get_capacity(vector vec) {
+    return vec->capacity;
+}
+
 bool is_empty(vector vec) {
     vec = (vector_impl*) vec;
     return vec->size == 0;
