@@ -193,6 +193,15 @@ void reverse(vector vec) {
     }
 }
 
+bool containsp(vector vec, void* item) {
+    for (int i = 0; i < vec->size; i++) {
+        if (item == vec->item_list[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
 size_t get_size(vector vec) {
     return vec->size;
 }

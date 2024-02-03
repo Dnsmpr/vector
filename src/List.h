@@ -151,6 +151,18 @@ size_t get_capacity(vector vec);
  * @param vec A pointer to the vector.
  */
 void reverse(vector vec);
+
+/**
+ * Determines whether the vector contains a specific pointer.
+ *
+ * This function searches the vector for an element that matches the provided pointer
+ * and returns true if the pointer is found, indicating the presence of the element.
+ *
+ * @param vec A pointer to the vector.
+ * @param item The pointer whose presence in the vector is being checked.
+ * @return True if the item pointer is found in the vector; otherwise, false.
+ */
+bool containsp(vector vec, void* item);
 /*****************************************************************************************************/
 
 #endif // LIST_H
