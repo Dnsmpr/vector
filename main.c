@@ -63,10 +63,9 @@ int main(int argc, char* argv[]) {
     printf("%d\n", is_empty(v));
     char* val = pop(v);
     printf("%s\n", val);
-    v = (vector_impl*) v;
-    printf("%ld\n", v->capacity);
+    //printf("%ld\n", v->capacity);
     shrink(v);
-    printf("%ld\n", v->capacity);
+    //printf("%ld\n", v->capacity);
     printf("copy -------- \n\n");
     vector ve2 = clone(v);
     replace(ve2, 1, v8);

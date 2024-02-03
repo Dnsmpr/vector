@@ -1,5 +1,14 @@
 #include <List.h>
 
+/* Definition of the internal structure for the vector, including its size, capacity,
+ * an array of pointers to elements, and the size of each element. */
+typedef struct vector_impl {
+    uint64_t size;        // Current number of elements in the vector
+    uint64_t capacity;    // Maximum number of elements before resizing is needed
+    void** item_list;     // Array of pointers to the elements
+    size_t bytes;         // Size of each element in bytes
+} vector_impl;
+
 vector vec_init(uint64_t capacity, size_t bytes) {
     vector_impl* vec_handler = malloc(sizeof(vector_impl));
     if (vec_handler == NULL) {
