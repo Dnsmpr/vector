@@ -135,6 +135,7 @@ void shrink(vector vec);
  * Returns a deep clone of the vector.
  *
  * @param vec A pointer to the vector.
+ * @return A deep cloned vector instance of vec.
  */
 vector clone(vector vec);
 
