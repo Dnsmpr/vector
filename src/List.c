@@ -140,7 +140,7 @@ void* pop(vector vec) {
 }
 
 status deleteFront(vector vec) {
-    if (vec->size < 0) {
+    if (vec->size == 0) {
         return EMPTY_VECTOR;
     }
     free(vec->item_list[0]);
@@ -154,7 +154,7 @@ status deleteFront(vector vec) {
 }
 
 status deleteBack(vector vec) {
-    if (vec->size < 0) {
+    if (vec->size == 0) {
         return EMPTY_VECTOR;
     }
     free(vec->item_list[vec->size - 1]);
