@@ -17,6 +17,7 @@ vector vec_init(uint64_t capacity, size_t bytes) {
     vec_handler->bytes = bytes;
     vec_handler->item_list = malloc(sizeof(void*) * capacity);
     if (vec_handler->item_list == NULL) {
+        free(vec_handler);
         return NULL;
     }
 
