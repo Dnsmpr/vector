@@ -185,6 +185,7 @@ vector clone(vector vec) {
 
     if(i_copy == NULL) {
         free(v_copy);
+        return NULL;
     }
 
     for (int i = 0; i < vec->size; i++) {
