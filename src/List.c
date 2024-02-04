@@ -73,6 +73,11 @@ void add_at_index(vector vec, size_t index, void* item) {
         append(item, vec);
         return;
     }
+
+    if (index <= 0) {
+        front(vec, item);
+        return;
+    }
     check_for_resize(vec);
     for (int i = vec->size; i >= index; i--) {
         vec->item_list[i + 1] = vec->item_list[i];
