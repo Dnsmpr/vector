@@ -9,7 +9,7 @@ typedef struct vector_impl {
     size_t bytes;         // Size of each element in bytes
 } vector_impl;
 
-vector init(uint64_t capacity, size_t bytes) {
+vector init(size_t capacity, size_t bytes) {
     vector_impl* vec_handler = malloc(sizeof(vector_impl));
     if (vec_handler == NULL) {
         return NULL;
