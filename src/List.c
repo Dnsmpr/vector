@@ -225,3 +225,56 @@ void print(vector vec) {
     printf("]");
 }
 
+void printi(vector vec) {
+    for (int i = 0; i < vec->size; i++) {
+        printf("%d ", *(int*)vec->item_list[i]);
+    }
+}
+
+void swap(void* a, void* b, size_t bytes) {
+    void* temp = malloc(bytes);
+
+    if (temp == NULL) {
+        return;
+    }
+
+    memmove(temp, a, bytes);
+    memmove(a, b, bytes);
+    memmove(b, temp, bytes);
+
+    free(temp);
+}
+
+int partition(vector vec, compare c, int low, int high) {
+    
+    void* pivot = vec->item_list[low];
+    int i = low;
+    int j = high;
+    size_t bytes = vec->bytes;
+
+    while (i < j) {
+        while (c(vec->item_list[i], pivot) <= 0) {
+            i++;
+        }
+
+        while (c(vec->item_list[j], pivot) > 0) {
+            j--;
+        }
+
+        if (i < j) {
+            swap(vec->item_list[i], vec->item_list[j], bytes);
+        }
+
+    }
+
+    swap(vec->item_list[j], vec->item_list[low], bytes);
+    return j;
+}
+
+void sort(vector vec, compare c, int low, int high) {
+    if (low < high) {
+        int j = partition(vec, c, low, high);
+        sort(vec, c, low, j - 1);
+        sort(vec, c, j + 1, high);
+    }
+}

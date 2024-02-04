@@ -7,7 +7,51 @@ typedef struct test {
     int height;
 } test;
 
+int myComp(void* a, void* b) {
+    int ai = *(const int*)a;
+    int bi = *(const int*)b;
+    return (ai > bi) - (ai < bi);
+}
+
 int main(int argc, char* argv[]) {
+
+    uint64_t cap = 8;
+    size_t bytes = sizeof(int);
+    vector v = vec_init(cap, bytes);
+    int a = 2;
+    int b = 19;
+    int c = 21;
+    int d = -1;
+    int e = -2;
+    int f = 10;
+    append(v, &a);
+    append(v, &c);
+    append(v, &b);
+    append(v, &f);
+    append(v, &d);
+    append(v, &e);
+
+    int i1 = -10;
+    int i2 = 12;
+    int i3 = -1;
+    add_at_index(v, 1, &i1);
+    add_at_index(v, 4, &i2);
+    front(v, &i3);
+    printf("--------UNSORTED--------\n");
+    printi(v);
+    printf("\n");
+    sort(v, myComp, 0, get_size(v) - 1);
+    printf("--------SORTED--------\n");
+    printi(v);
+    printf("\n");
+    printf("--------REVERSED--------\n");
+    reverse(v);
+    printi(v);
+    printf("\n");
+    destroy(v);
+
+
+    /*
     uint64_t cap = 4;
     char* v1 = "aa";
     size_t s = sizeof(strlen(v1) + 1);
@@ -32,9 +76,9 @@ int main(int argc, char* argv[]) {
     append(v, v5);
     append(v, v6);
     append(v, v7);
-    char* v8 = "zz";
+    int v8 = 9;
     front(v, v8);
-    char* v9 = "hh";
+    int v9 = 10;
     add_at_index(v, 5, v9);
     add_at_index(v, 1, v9);
     add_at_index(v, 2, v9);
@@ -77,6 +121,13 @@ int main(int argc, char* argv[]) {
     print(v);
     free(val);
     destroy(ve2);
+
+
+    printf("\n\n -------- SORTED --------\n\n");
+    printf("%ld\n\n", get_size(v) - 1);
+    sort(v, myComp, 0, get_size(v) - 1);
+    print(v);
     destroy(v);
+    */
     return 0;
 }

@@ -167,4 +167,52 @@ void reverse(vector vec);
 bool containsp(vector vec, void* item);
 /*****************************************************************************************************/
 
+/**
+ * A function pointer type for comparing two elements.
+ *
+ * This typedef defines a pointer to a function that compares two elements. The function
+ * pointed to by this type must take two void pointers as arguments, representing the two
+ * elements to be compared. It returns an integer to indicate the result of the comparison.
+ *
+ * The function should return:
+ * - A negative integer if the first element is considered less than the second element.
+ * - Zero if the first element is considered equal to the second element.
+ * - A positive integer if the first element is considered greater than the second element.
+ *
+ * This comparison function is used to impose an ordering on the elements being sorted or
+ * manipulated. It allows generic sorting and manipulation algorithms to work with any data
+ * type by abstracting the comparison logic into this function.
+ */
+typedef int (*compare)(void*, void*);
+
+/**
+ * Sorts the elements of the vector in the specified range using the quicksort algorithm.
+ *
+ * @param vec     A pointer to the vector to be sorted.
+ * @param compare A pointer to a comparison function that takes two void pointers as arguments
+ *                and returns an integer less than, equal to, or greater than zero if the first argument
+ *                is considered to be respectively less than, equal to, or greater than the second.
+ * @param low     The starting index of the segment of the vector to be sorted. This index should be within
+ *                the bounds of the vector.
+ * @param high    The ending index of the segment of the vector to be sorted. This index should be within
+ *                the bounds of the vector and not less than 'low'.
+ */
+void sort(vector vec, compare c, int low, int high);
+
+/**
+ * Prints the elements of an integer vector.
+ *
+ * This function iterates through the vector, assuming that each element is an integer, and
+ * prints each integer to the standard output. Each element is printed using the "%d" format
+ * specifier, suitable for integers. The elements are printed in the order they appear in the
+ * vector, each followed by a newline character for clear separation.
+ *
+ * @param vec A pointer to the vector whose elements are to be printed.
+ *
+ * Note: This function does not perform any type checking on the elements of the vector. It
+ *       blindly treats each element as an integer. Therefore, it is the caller's responsibility
+ *       to ensure that the vector indeed contains only integers before calling this function.
+ */
+void printi(vector vec);
+
 #endif // LIST_H
