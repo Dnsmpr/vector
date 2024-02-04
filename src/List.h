@@ -36,7 +36,7 @@ typedef struct vector_impl* vector;
  * @param bytes The size of each element in the vector.
  * @return A pointer to the newly created vector.
  */
-vector vec_init(uint64_t size, size_t bytes);
+vector init(uint64_t size, size_t bytes);
 
 /**
  * Appends an item to the end of the vector.
@@ -67,7 +67,7 @@ void print(vector vec);
  * @param vec A pointer to the vector.
  * @return The number of elements in the vector.
  */
-size_t get_size(vector vec);
+size_t getSize(vector vec);
 
 /**
  * Checks if the vector is empty.
@@ -75,7 +75,7 @@ size_t get_size(vector vec);
  * @param vec A pointer to the vector.
  * @return True if the vector is empty, otherwise false.
  */
-bool is_empty(vector vec);
+bool isEmpty(vector vec);
 
 /**
  * Removes and returns the last element of the vector.
@@ -99,7 +99,7 @@ void destroy(vector vec);
  * @param index The position at which to insert the item.
  * @param item A pointer to the item to be added.
  */
-void add_at_index(vector vec, size_t index, void* item);
+void addAtIndex(vector vec, size_t index, void* item);
 
 /**
  * Replaces an item at a specified index within the vector.
@@ -122,7 +122,7 @@ void deleteFront(vector vec);
  *
  * @param vec A pointer to the vector.
  */
-void deleteb(vector vec);
+void deleteBack(vector vec);
 
 /**
  * Reduces the capacity of the vector to match its current size, minimizing memory usage.
@@ -145,7 +145,7 @@ vector clone(vector vec);
  * @param vec A pointer to the vector.
  * @return The current capacity for the vector.
  */
-size_t get_capacity(vector vec);
+size_t getCapacity(vector vec);
 
 /**
  * Reverses the elements in a vector.
@@ -164,7 +164,7 @@ void reverse(vector vec);
  * @param item The pointer whose presence in the vector is being checked.
  * @return True if the item pointer is found in the vector; otherwise, false.
  */
-bool containsp(vector vec, void* item);
+bool contains(vector vec, void* item);
 /*****************************************************************************************************/
 
 /**
@@ -223,6 +223,6 @@ void printi(vector vec);
  * @param vec A pointer to the vector.
  * @param index The position of the element.
  */
-void* get_item_at_index(vector vec, size_t index);
+void* getItemAtIndex(vector vec, size_t index);
 
 #endif // LIST_H

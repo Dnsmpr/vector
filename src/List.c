@@ -9,7 +9,7 @@ typedef struct vector_impl {
     size_t bytes;         // Size of each element in bytes
 } vector_impl;
 
-vector vec_init(uint64_t capacity, size_t bytes) {
+vector init(uint64_t capacity, size_t bytes) {
     vector_impl* vec_handler = malloc(sizeof(vector_impl));
     if (vec_handler == NULL) {
         return NULL;
@@ -68,7 +68,7 @@ void front(vector vec, void* item) {
     vec->size++;
 }
 
-void add_at_index(vector vec, size_t index, void* item) {
+void addAtIndex(vector vec, size_t index, void* item) {
     if (index >= vec->size) {
         append(item, vec);
         return;
@@ -146,7 +146,7 @@ void deleteFront(vector vec) {
     vec->size--;
 }
 
-void deleteb(vector vec) {
+void deleteBack(vector vec) {
     if(!(vec->size > 0)) {
         return;
     }
@@ -202,7 +202,7 @@ void reverse(vector vec) {
     }
 }
 
-bool containsp(vector vec, void* item) {
+bool contains(vector vec, void* item) {
     for (int i = 0; i < vec->size; i++) {
         if (item == vec->item_list[i]) {
             return true;
@@ -211,22 +211,22 @@ bool containsp(vector vec, void* item) {
     return false;
 }
 
-void* get_item_at_index(vector vec, size_t index) {
+void* getItemAtIndex(vector vec, size_t index) {
     if (index > vec->size) {
         return vec->item_list[index];
     }
     return vec->item_list[index];
 }
 
-size_t get_size(vector vec) {
+size_t getSize(vector vec) {
     return vec->size;
 }
 
-size_t get_capacity(vector vec) {
+size_t getCapacity(vector vec) {
     return vec->capacity;
 }
 
-bool is_empty(vector vec) {
+bool isEmpty(vector vec) {
     return vec->size == 0;
 }
 

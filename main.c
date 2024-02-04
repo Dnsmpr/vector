@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 
     uint64_t cap = 8;
     size_t bytes = sizeof(test*);
-    vector v  = vec_init(cap, bytes);
+    vector v  = init(cap, bytes);
 
     for (int i = 0; i < 15; i++) {
         test t1 = {
@@ -33,10 +33,10 @@ int main(int argc, char* argv[]) {
     };
 
     replace(v, 0, &n1);
-    add_at_index(v, 0, &n1);
+    addAtIndex(v, 0, &n1);
 
-    for (int i = 0; i < get_size(v); i++) {
-        test* t = get_item_at_index(v, i);
+    for (int i = 0; i < getSize(v); i++) {
+        test* t = getItemAtIndex(v, i);
         
         printf("adr:%p\tsize:%d\theight:%d\n", t, t->size, t->height);
     }
