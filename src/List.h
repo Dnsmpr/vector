@@ -42,11 +42,11 @@ typedef enum status {
 /**
  * Initializes and returns a new vector with a specified capacity and element size.
  *
- * @param size The initial capacity of the vector.
+ * @param capacity The initial capacity of the vector.
  * @param bytes The size of each element in the vector.
  * @return A pointer to the newly created vector.
  */
-vector init(size_t size, size_t bytes);
+vector init(size_t capacity, size_t bytes);
 
 /**
  * Appends an item to the end of the vector.
