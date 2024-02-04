@@ -115,7 +115,7 @@ void replace(vector vec, size_t index, void* item);
  *
  * @param vec A pointer to the vector.
  */
-void deletef(vector vec);
+void deleteFront(vector vec);
 
 /**
  * Deletes the item at the end of the vector.

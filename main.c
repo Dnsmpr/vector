@@ -27,6 +27,14 @@ int main(int argc, char* argv[]) {
         append(v, &t1);
     }
 
+    test n1 = {
+        n1.height = -100,
+        n1.size = -100
+    };
+
+    replace(v, 0, &n1);
+    add_at_index(v, 0, &n1);
+
     for (int i = 0; i < get_size(v); i++) {
         test* t = get_item_at_index(v, i);
         
@@ -80,10 +88,10 @@ int main(int argc, char* argv[]) {
     deleteb(v);
     replace(v, 5, n10);
 
-    deletef(v);
-    deletef(v);
-    deletef(v);
-    deletef(v);
+    deleteFront(v);
+    deleteFront(v);
+    deleteFront(v);
+    deleteFront(v);
     replace(v, 1, n10);
     append(v, n10);
     print(v);

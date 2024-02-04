@@ -133,7 +133,7 @@ void* pop(vector vec) {
     return copy;
 }
 
-void deletef(vector vec) {
+void deleteFront(vector vec) {
     if (!(vec->size > 0)) {
         return;
     }
