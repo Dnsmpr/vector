@@ -171,8 +171,11 @@ vector clone(vector vec) {
     }
 
     for (int i = 0; i < vec->size; i++) {
-        // TODO free everything if malloc fails.
         void* item_copy = malloc(vec->bytes);
+        if (item_copy == NULL) {
+            destroy(i_copy);
+            return;
+        }
         memmove(item_copy, vec->item_list[i], vec->bytes);
         i_copy[i] = item_copy;
     }
