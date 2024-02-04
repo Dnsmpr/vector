@@ -3,8 +3,8 @@
 /* Definition of the internal structure for the vector, including its size, capacity,
  * an array of pointers to elements, and the size of each element. */
 typedef struct vector_impl {
-    uint64_t size;        // Current number of elements in the vector
-    uint64_t capacity;    // Maximum number of elements before resizing is needed
+    size_t size;        // Current number of elements in the vector
+    size_t capacity;    // Maximum number of elements before resizing is needed
     void** item_list;     // Array of pointers to the elements
     size_t bytes;         // Size of each element in bytes
 } vector_impl;
