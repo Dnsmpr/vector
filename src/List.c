@@ -35,14 +35,14 @@ void resize(vector vec) {
     vec->capacity *= 2;
 }
 
-void check_for_resize(vector vec) {
+void checkForResize(vector vec) {
     if (vec->size == vec->capacity) {
     resize(vec);
     }
 }
 
 void append(vector vec, void* item) {
-    check_for_resize(vec);
+    checkForResize(vec);
     void* new_item = malloc(vec->bytes);
     if (new_item == NULL) {
         return;
@@ -52,7 +52,7 @@ void append(vector vec, void* item) {
 }
 
 void front(vector vec, void* item) {
-    check_for_resize(vec);
+    checkForResize(vec);
     for (int i = vec->size - 1; i >= 0; i--) {
         vec->item_list[i + 1] = vec->item_list[i];
         vec->item_list[i] = NULL;
@@ -78,7 +78,7 @@ void addAtIndex(vector vec, size_t index, void* item) {
         front(vec, item);
         return;
     }
-    check_for_resize(vec);
+    checkForResize(vec);
     for (int i = vec->size; i >= index; i--) {
         vec->item_list[i + 1] = vec->item_list[i];
         vec->item_list[i] = NULL;
