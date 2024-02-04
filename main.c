@@ -16,38 +16,22 @@ int myComp(void* a, void* b) {
 int main(int argc, char* argv[]) {
 
     uint64_t cap = 8;
-    size_t bytes = sizeof(int);
-    vector v = vec_init(cap, bytes);
-    int a = 2;
-    int b = 19;
-    int c = 21;
-    int d = -1;
-    int e = -2;
-    int f = 10;
-    append(v, &a);
-    append(v, &c);
-    append(v, &b);
-    append(v, &f);
-    append(v, &d);
-    append(v, &e);
+    size_t bytes = sizeof(test*);
+    vector v  = vec_init(cap, bytes);
 
-    int i1 = -10;
-    int i2 = 12;
-    int i3 = -1;
-    add_at_index(v, 1, &i1);
-    add_at_index(v, 4, &i2);
-    front(v, &i3);
-    printf("--------UNSORTED--------\n");
-    printi(v);
-    printf("\n");
-    sort(v, myComp, 0, get_size(v) - 1);
-    printf("--------SORTED--------\n");
-    printi(v);
-    printf("\n");
-    printf("--------REVERSED--------\n");
-    reverse(v);
-    printi(v);
-    printf("\n");
+    for (int i = 0; i < 15; i++) {
+        test t1 = {
+            t1.height = 10 + 5*i,
+            t1.size = 20 + 19-3*i
+        };
+        append(v, &t1);
+    }
+
+    for (int i = 0; i < get_size(v); i++) {
+        test* t = get_item_at_index(v, i);
+        
+        printf("adr:%p\tsize:%d\theight:%d\n", t, t->size, t->height);
+    }
     destroy(v);
 
 

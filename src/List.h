@@ -215,4 +215,14 @@ void sort(vector vec, compare c, int low, int high);
  */
 void printi(vector vec);
 
+/**
+ * Returns a pointer to item at specified index.
+ *
+ * This function returns a void* to an item at the given index.
+ * If the index exceeds the size of the vector, a pointer to the last element is supplied.
+ * @param vec A pointer to the vector.
+ * @param index The position of the element.
+ */
+void* get_item_at_index(vector vec, size_t index);
+
 #endif // LIST_H

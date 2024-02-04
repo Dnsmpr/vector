@@ -202,6 +202,13 @@ bool containsp(vector vec, void* item) {
     return false;
 }
 
+void* get_item_at_index(vector vec, size_t index) {
+    if (index > vec->size) {
+        return vec->item_list[index];
+    }
+    return vec->item_list[index];
+}
+
 size_t get_size(vector vec) {
     return vec->size;
 }
