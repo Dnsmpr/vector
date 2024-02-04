@@ -1,12 +1,14 @@
 #include <List.h>
 
+#define SWAP_FAIL -1
+
 /* Definition of the internal structure for the vector, including its size, capacity,
  * an array of pointers to elements, and the size of each element. */
 typedef struct vector_impl {
     size_t size;        // Current number of elements in the vector
     size_t capacity;    // Maximum number of elements before resizing is needed
-    void** item_list;     // Array of pointers to the elements
-    size_t bytes;         // Size of each element in bytes
+    void** item_list;   // Array of pointers to the elements
+    size_t bytes;       // Size of each element in bytes
 } vector_impl;
 
 vector init(size_t capacity, size_t bytes) {
@@ -26,33 +28,42 @@ vector init(size_t capacity, size_t bytes) {
     return (vector) vec_handler;
 }
 
-void resize(vector vec) {
+status resize(vector vec) {
     vec->item_list = realloc(vec->item_list,
      2 * (vec->capacity) * sizeof(void*));
     if (vec->item_list == NULL) {
-        return;
+        return OUT_OF_MEMORY;
     }
     vec->capacity *= 2;
+    return OK;
 }
 
-void checkForResize(vector vec) {
+status checkForResize(vector vec) {
     if (vec->size == vec->capacity) {
-    resize(vec);
+        return resize(vec);
     }
+    return OK;
 }
 
-void append(vector vec, void* item) {
-    checkForResize(vec);
+status append(vector vec, void* item) {
+    status s;
+    if ((s = checkForResize(vec)) != OK) {
+        return s;
+    }
     void* new_item = malloc(vec->bytes);
     if (new_item == NULL) {
-        return;
+        return OUT_OF_MEMORY;
     }
     memmove(new_item, item, vec->bytes);
     vec->item_list[vec->size++] = new_item;
+    return OK;
 }
 
-void front(vector vec, void* item) {
-    checkForResize(vec);
+status front(vector vec, void* item) {
+    status s;
+    if ((s = checkForResize(vec)) != OK) {
+        return s;
+    }
     for (int i = vec->size - 1; i >= 0; i--) {
         vec->item_list[i + 1] = vec->item_list[i];
         vec->item_list[i] = NULL;
@@ -60,25 +71,28 @@ void front(vector vec, void* item) {
 
     void* new_item = malloc(vec->bytes);
     if (new_item == NULL) {
-        return;
+        return OUT_OF_MEMORY;
     }
 
     memmove(new_item, item, vec->bytes);
     vec->item_list[0] = new_item;
     vec->size++;
+    return OK;
 }
 
-void addAtIndex(vector vec, size_t index, void* item) {
+status addAtIndex(vector vec, size_t index, void* item) {
+    status s;
     if (index >= vec->size) {
-        append(item, vec);
-        return;
+        return append(item, vec);
     }
 
     if (index <= 0) {
-        front(vec, item);
-        return;
+        return front(vec, item);
+
     }
-    checkForResize(vec);
+    if ((s = checkForResize(vec)) != OK) {
+        return s;
+    }
     for (int i = vec->size; i >= index; i--) {
         vec->item_list[i + 1] = vec->item_list[i];
         vec->item_list[i] = NULL;
@@ -86,25 +100,26 @@ void addAtIndex(vector vec, size_t index, void* item) {
 
     void* new_item = malloc(vec->bytes);
     if (new_item == NULL) {
-        return;
+        return OUT_OF_MEMORY;
     }
     memmove(new_item, item, vec->bytes);
     vec->item_list[index] = new_item;
     vec->size++;
+    return OK;
 }
 
-void replace(vector vec, size_t index, void* item) {
+status replace(vector vec, size_t index, void* item) {
     if (index >= vec->size) {
-        append(item, vec);
-        return;
+        return append(item, vec);
     }
     void* new_item = malloc(vec->bytes);
     if (new_item == NULL) {
-        return;
+        return OUT_OF_MEMORY;
     }
     memmove(new_item, item, vec->bytes);
     free(vec->item_list[index]);
     vec->item_list[index] = new_item;
+    return OK;
 }
 
 void destroy(vector vec) {
@@ -121,21 +136,12 @@ void* pop(vector vec) {
     }
     vec->size--;
     void* item = vec->item_list[vec->size];
-    void* copy = malloc(vec->bytes);
-
-    if (copy == NULL) {
-        return NULL;
-    }
-
-    memmove(copy, item, vec->bytes);
-    free(item);
-
-    return copy;
+    return item;
 }
 
-void deleteFront(vector vec) {
-    if (!(vec->size > 0)) {
-        return;
+status deleteFront(vector vec) {
+    if (vec->size < 0) {
+        return EMPTY_VECTOR;
     }
     free(vec->item_list[0]);
 
@@ -144,19 +150,25 @@ void deleteFront(vector vec) {
     }
 
     vec->size--;
+    return OK;
 }
 
-void deleteBack(vector vec) {
-    if(!(vec->size > 0)) {
-        return;
+status deleteBack(vector vec) {
+    if (vec->size < 0) {
+        return EMPTY_VECTOR;
     }
     free(vec->item_list[vec->size - 1]);
     vec->size--;
+    return OK;
 }
 
-void shrink(vector vec) {
+status shrink(vector vec) {
     vec->item_list = realloc(vec->item_list,vec->size * sizeof(void*));
+    if (vec->item_list == NULL) {
+        return OUT_OF_MEMORY;
+    }
     vec->capacity = vec->size;
+    return OK;
 }
 
 vector clone(vector vec) {
@@ -247,11 +259,11 @@ void printi(vector vec) {
     }
 }
 
-void swap(void* a, void* b, size_t bytes) {
+status swap(void* a, void* b, size_t bytes) {
     void* temp = malloc(bytes);
 
     if (temp == NULL) {
-        return;
+        return OUT_OF_MEMORY;
     }
 
     memmove(temp, a, bytes);
@@ -259,6 +271,7 @@ void swap(void* a, void* b, size_t bytes) {
     memmove(b, temp, bytes);
 
     free(temp);
+    return OK;
 }
 
 int partition(vector vec, compare c, int low, int high) {
@@ -278,18 +291,26 @@ int partition(vector vec, compare c, int low, int high) {
         }
 
         if (i < j) {
-            swap(vec->item_list[i], vec->item_list[j], bytes);
+            if (swap(vec->item_list[i], vec->item_list[j], bytes) != OK) {
+                return SWAP_FAIL;
+            }
         }
 
     }
 
-    swap(vec->item_list[j], vec->item_list[low], bytes);
+    if (swap(vec->item_list[j], vec->item_list[low], bytes) != OK) {
+        return SWAP_FAIL;
+    }
+
     return j;
 }
 
 void sort(vector vec, compare c, int low, int high) {
     if (low < high) {
         int j = partition(vec, c, low, high);
+        if(j == SWAP_FAIL) {
+            return;
+        }
         sort(vec, c, low, j - 1);
         sort(vec, c, j + 1, high);
     }

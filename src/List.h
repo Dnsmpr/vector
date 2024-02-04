@@ -26,6 +26,16 @@ typedef struct vector_impl* vector;
 
 /*****************************************************************************************************/
 
+/* Status messages */
+
+typedef enum status {
+    OK,                 // Operation successful.
+    OUT_OF_MEMORY,      // Malloc fails.
+    EMPTY_VECTOR        // Vector contains no elements.
+} status;
+
+/*****************************************************************************************************/
+
 /* Vector API Function Declarations */
 
 /*****************************************************************************************************/
@@ -36,28 +46,31 @@ typedef struct vector_impl* vector;
  * @param bytes The size of each element in the vector.
  * @return A pointer to the newly created vector.
  */
-vector init(uint64_t size, size_t bytes);
+vector init(size_t size, size_t bytes);
 
 /**
  * Appends an item to the end of the vector.
  *
  * @param vec A pointer to the vector.
  * @param item A pointer to the item to be appended.
+ * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
-void append(vector vec, void* item);
+status append(vector vec, void* item);
 
 /**
  * Inserts an item at the front of the vector.
  *
  * @param vec A pointer to the vector.
  * @param item A pointer to the item to be added to the front.
+ * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
-void front(vector vec, void* item);
+status front(vector vec, void* item);
 
 /**
  * Prints the contents of the vector.
  *
  * @param vec A pointer to the vector.
+ * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
 void print(vector vec);
 
@@ -98,8 +111,9 @@ void destroy(vector vec);
  * @param vec A pointer to the vector.
  * @param index The position at which to insert the item.
  * @param item A pointer to the item to be added.
+ * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
-void addAtIndex(vector vec, size_t index, void* item);
+status addAtIndex(vector vec, size_t index, void* item);
 
 /**
  * Replaces an item at a specified index within the vector.
@@ -107,35 +121,39 @@ void addAtIndex(vector vec, size_t index, void* item);
  * @param vec A pointer to the vector.
  * @param index The index of the item to be replaced.
  * @param item A pointer to the new item to be placed at the specified index.
+ * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
-void replace(vector vec, size_t index, void* item);
+status replace(vector vec, size_t index, void* item);
 
 /**
  * Deletes the item at the front of the vector.
  *
  * @param vec A pointer to the vector.
+ * @return EMTPY_VECTOR if vector is empty, otherwise OK.
  */
-void deleteFront(vector vec);
+status deleteFront(vector vec);
 
 /**
  * Deletes the item at the end of the vector.
  *
  * @param vec A pointer to the vector.
+ * @return EMTPY_VECTOR if vector is empty, otherwise OK.
  */
-void deleteBack(vector vec);
+status deleteBack(vector vec);
 
 /**
  * Reduces the capacity of the vector to match its current size, minimizing memory usage.
  *
  * @param vec A pointer to the vector.
+ * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
-void shrink(vector vec);
+status shrink(vector vec);
 
 /**
  * Returns a deep clone of the vector.
  *
  * @param vec A pointer to the vector.
- * @return A deep cloned vector instance of vec.
+ * @return A deep cloned vector instance of vec. If cloning fails, NULL is returned.
  */
 vector clone(vector vec);
 
@@ -222,6 +240,7 @@ void printi(vector vec);
  * If the index exceeds the size of the vector, a pointer to the last element is supplied.
  * @param vec A pointer to the vector.
  * @param index The position of the element.
+ * @return A pointer to the item.
  */
 void* getItemAtIndex(vector vec, size_t index);
 
