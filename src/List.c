@@ -11,7 +11,7 @@ typedef struct vector_impl {
     size_t bytes;       // Size of each element in bytes
 } vector_impl;
 
-vector init(size_t capacity, size_t bytes) {
+vector init(const size_t capacity, const size_t bytes) {
     vector_impl* vec_handler = malloc(sizeof(vector_impl));
     if (vec_handler == NULL) {
         return NULL;
@@ -45,7 +45,7 @@ status checkForResize(vector vec) {
     return OK;
 }
 
-status append(vector vec, void* item) {
+status append(vector vec, const void* item) {
     status s;
     if ((s = checkForResize(vec)) != OK) {
         return s;
@@ -59,7 +59,7 @@ status append(vector vec, void* item) {
     return OK;
 }
 
-status front(vector vec, void* item) {
+status front(vector vec, const void* item) {
     status s;
     if ((s = checkForResize(vec)) != OK) {
         return s;
@@ -80,7 +80,7 @@ status front(vector vec, void* item) {
     return OK;
 }
 
-status addAtIndex(vector vec, size_t index, void* item) {
+status addAtIndex(vector vec, const size_t index, void* item) {
     status s;
     if (index >= vec->size) {
         return append(item, vec);
@@ -215,7 +215,7 @@ void reverse(vector vec) {
     }
 }
 
-bool contains(vector vec, void* item) {
+bool contains(const vector vec, const void* item) {
     for (int i = 0; i < vec->size; i++) {
         if (item == vec->item_list[i]) {
             return true;
@@ -224,26 +224,26 @@ bool contains(vector vec, void* item) {
     return false;
 }
 
-void* getItemAtIndex(vector vec, size_t index) {
+void* getItemAtIndex(const vector vec, const size_t index) {
     if (index > vec->size) {
         return vec->item_list[index];
     }
     return vec->item_list[index];
 }
 
-size_t getSize(vector vec) {
+size_t getSize(const vector vec) {
     return vec->size;
 }
 
-size_t getCapacity(vector vec) {
+size_t getCapacity(const vector vec) {
     return vec->capacity;
 }
 
-bool isEmpty(vector vec) {
+bool isEmpty(const vector vec) {
     return vec->size == 0;
 }
 
-void print(vector vec) {
+void print(const vector vec) {
     printf("[");
     for (int i = 0; i < vec->size; i++) {
         if (vec->item_list[i] == NULL) {
@@ -254,13 +254,13 @@ void print(vector vec) {
     printf("]");
 }
 
-void printi(vector vec) {
+void printi(const vector vec) {
     for (int i = 0; i < vec->size; i++) {
         printf("%d ", *(int*)vec->item_list[i]);
     }
 }
 
-status swap(void* a, void* b, size_t bytes) {
+status swap(void* a, void* b, const size_t bytes) {
     void* temp = malloc(bytes);
 
     if (temp == NULL) {
@@ -275,7 +275,7 @@ status swap(void* a, void* b, size_t bytes) {
     return OK;
 }
 
-int partition(vector vec, compare c, int low, int high) {
+int partition(vector vec, const compare c, int low, int high) {
     
     void* pivot = vec->item_list[low];
     int i = low;
@@ -306,7 +306,7 @@ int partition(vector vec, compare c, int low, int high) {
     return j;
 }
 
-void sort(vector vec, compare c, int low, int high) {
+void sort(vector vec, const compare c, int low, int high) {
     if (low < high) {
         int j = partition(vec, c, low, high);
         if(j == SWAP_FAIL) {

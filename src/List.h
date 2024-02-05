@@ -46,7 +46,7 @@ typedef enum status {
  * @param bytes The size of each element in the vector.
  * @return A pointer to the newly created vector.
  */
-vector init(size_t capacity, size_t bytes);
+vector init(const size_t capacity, const size_t bytes);
 
 /**
  * Appends an item to the end of the vector.
@@ -55,7 +55,7 @@ vector init(size_t capacity, size_t bytes);
  * @param item A pointer to the item to be appended.
  * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
-status append(vector vec, void* item);
+status append(vector vec, const void* item);
 
 /**
  * Inserts an item at the front of the vector.
@@ -64,7 +64,7 @@ status append(vector vec, void* item);
  * @param item A pointer to the item to be added to the front.
  * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
-status front(vector vec, void* item);
+status front(vector vec, const void* item);
 
 /**
  * Prints the contents of the vector.
@@ -72,7 +72,7 @@ status front(vector vec, void* item);
  * @param vec A pointer to the vector.
  * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
-void print(vector vec);
+void print(const vector vec);
 
 /**
  * Returns the current number of elements in the vector.
@@ -80,7 +80,7 @@ void print(vector vec);
  * @param vec A pointer to the vector.
  * @return The number of elements in the vector.
  */
-size_t getSize(vector vec);
+size_t getSize(const vector vec);
 
 /**
  * Checks if the vector is empty.
@@ -88,7 +88,7 @@ size_t getSize(vector vec);
  * @param vec A pointer to the vector.
  * @return True if the vector is empty, otherwise false.
  */
-bool isEmpty(vector vec);
+bool isEmpty(const vector vec);
 
 /**
  * Removes and returns the last element of the vector.
@@ -113,7 +113,7 @@ void destroy(vector vec);
  * @param item A pointer to the item to be added.
  * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
-status addAtIndex(vector vec, size_t index, void* item);
+status addAtIndex(vector vec, const size_t index, void* item);
 
 /**
  * Replaces an item at a specified index within the vector.
@@ -123,7 +123,7 @@ status addAtIndex(vector vec, size_t index, void* item);
  * @param item A pointer to the new item to be placed at the specified index.
  * @return OUT_OF_MEMORY if allocation fails, otherwise OK.
  */
-status replace(vector vec, size_t index, void* item);
+status replace(vector vec, const size_t index, void* item);
 
 /**
  * Deletes the item at the front of the vector.
@@ -163,7 +163,7 @@ vector clone(vector vec);
  * @param vec A pointer to the vector.
  * @return The current capacity for the vector.
  */
-size_t getCapacity(vector vec);
+size_t getCapacity(const vector vec);
 
 /**
  * Reverses the elements in a vector.
@@ -182,7 +182,7 @@ void reverse(vector vec);
  * @param item The pointer whose presence in the vector is being checked.
  * @return True if the item pointer is found in the vector; otherwise, false.
  */
-bool contains(vector vec, void* item);
+bool contains(const vector vec, const void* item);
 /*****************************************************************************************************/
 
 /**
@@ -215,7 +215,7 @@ typedef int (*compare)(void*, void*);
  * @param high    The ending index of the segment of the vector to be sorted. This index should be within
  *                the bounds of the vector and not less than 'low'.
  */
-void sort(vector vec, compare c, int low, int high);
+void sort(vector vec, const compare c, int low, int high);
 
 /**
  * Prints the elements of an integer vector.
@@ -231,7 +231,7 @@ void sort(vector vec, compare c, int low, int high);
  *       blindly treats each element as an integer. Therefore, it is the caller's responsibility
  *       to ensure that the vector indeed contains only integers before calling this function.
  */
-void printi(vector vec);
+void printi(const vector vec);
 
 /**
  * Returns a pointer to item at specified index.
@@ -242,6 +242,6 @@ void printi(vector vec);
  * @param index The position of the element.
  * @return A pointer to the item.
  */
-void* getItemAtIndex(vector vec, size_t index);
+void* getItemAtIndex(const vector vec, const size_t index);
 
 #endif // LIST_H
